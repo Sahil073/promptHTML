@@ -1011,7 +1011,7 @@ footer hr {
   padding: var(--spacing-sm);
   font-size: 1rem;
   transition: all var(--transition-base);
-  background: var(--light-gray);
+  background: #d3dae0;
 }
 
 .form-control:focus {
