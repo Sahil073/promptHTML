@@ -557,16 +557,20 @@ section {
 /* Hero Banner */
 .hero-banner {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 180, 168, 0.9) 100%), 
-              url('../imgs/About\ us\ 1.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 180, 168, 0.9) 100%),
+              url('../imgs/About us 1.jpg') center/cover no-repeat;
   min-height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-2xl);
+  /* REMOVE THIS ↓ */
   margin: var(--spacing-xl) 0;
+  margin: 0;
   overflow: hidden;
+  padding:0;
 }
+
 
 .hero-banner::before {
   content: "";
@@ -1551,9 +1555,8 @@ footer hr {
   margin: var(--spacing-md) 0;
 }
 
-/* ========== END OF STYLESHEET ========== */height: 380px;
-  }
-}
+/* ========== END OF STYLESHEET ========== */
+
 
 /* Mobile Landscape (576px - 767px) */
 /* @media (min-width: 576px) and (max-width: 767px) {
@@ -1577,3 +1580,16 @@ footer hr {
     height: 220px;
   }
    */
+/* === FIX: Remove top gap between navbar and top banner === */
+.hero-banner,
+.pages:first-of-type,
+section:first-of-type {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Ensure navbar sits flush at top */
+.navbar {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
