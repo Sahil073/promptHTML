@@ -72,3 +72,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 });
+// ===== Disable Right-Click =====
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert("Right-click is disabled!");
+});
+
+// ===== Disable Key Shortcuts =====
+document.addEventListener('keydown', function(e) {
+  // F12
+  if (e.key === 'F12') e.preventDefault();
+
+  // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+  if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) e.preventDefault();
+
+  // Ctrl+U (View Source)
+  if (e.ctrlKey && e.key.toUpperCase() === 'U') e.preventDefault();
+
+  // Ctrl+S (Save)
+  if (e.ctrlKey && e.key.toUpperCase() === 'S') e.preventDefault();
+});
+
+// ===== Detect DevTools Open =====
+let devtoolsOpen = false;
+const threshold = 160; // minimal difference for detection
+
+setInterval(function() {
+  const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+  const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+
+  if(widthThreshold || heightThreshold){
+    if(!devtoolsOpen){
+      devtoolsOpen = true;
+      alert("DevTools detected!"); // You can redirect or log
+      // window.location.href = "about:blank"; // optional redirect
+    }
+  } else {
+    devtoolsOpen = false;
+  }
+}, 1000);
+
+// ===== Anti Console Log / Debugger Detection =====
+(function() {
+  const element = new Image();
+  Object.defineProperty(element, 'id', {
+    get: function() {
+      alert('DevTools detected via console!');
+      // window.location.href = "about:blank"; // optional redirect
+    }
+  });
+  console.log(element);
+})();
